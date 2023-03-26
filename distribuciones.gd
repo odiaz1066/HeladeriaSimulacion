@@ -1,9 +1,10 @@
 extends Node
 
+class_name Distribuciones
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(exponencial(0.5, 2))
+	pass
 
 func factorial(n, x=1):
 	if (n <= 0):
