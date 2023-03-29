@@ -2,10 +2,27 @@ extends Node2D
 
 var dist = Distribuciones.new()
 var llegadas = []
-var media_llegadas
+var media_llegadas = 0.2
 var ultima_llegada = 0
 var tiempo_actual = 0
+var cola
 
+class Cola:
+	var clientes
+	var limite
+	func _init(limite=0):
+		self.clientes = []
+		self.limite = limite
+		
+	func entra(cliente):
+		if (self.limite != 0) and (len(self.clientes) >= self.limite):
+			return false
+		else:
+			self.clientes.push_back(cliente)
+			return true
+		
+	func sale():
+		return self.clientes.pop_front()
 
 func calcularLlegada():
 	var probabilidad = dist.exponencial(media_llegadas, tiempo_actual - ultima_llegada)
@@ -14,8 +31,17 @@ func calcularLlegada():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(dist.exponencial(0.5, 2))
+	#print(dist.exponencial(0.5, 2))
+	cola = Cola.new()
+	ultima_llegada = Time.get_ticks_msec() / 1000
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	tiempo_actual = Time.get_ticks_msec() / 1000
+	if (tiempo_actual - ultima_llegada) >= 1:
+		var nuevo_cliente = calcularLlegada()
+		if nuevo_cliente:
+			cola.entra(3)
+			ultima_llegada = Time.get_ticks_msec() / 1000
+		print(cola.clientes)
+	
