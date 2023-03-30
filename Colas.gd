@@ -3,16 +3,22 @@ extends Node2D
 var dist = Distribuciones.new()
 var llegadas = []
 var media_llegadas = 0.2
+var media_servicio = 0.2
 var ultima_llegada = 0
 var tiempo_actual = 0
+var timestep = 1000
 var cola
 
 class Cola:
 	var clientes
 	var limite
+	
 	func _init(limite=0):
 		self.clientes = []
 		self.limite = limite
+	
+	func length():
+		return len(self.clientes)
 		
 	func entra(cliente):
 		if (self.limite != 0) and (len(self.clientes) >= self.limite):
@@ -25,34 +31,75 @@ class Cola:
 		return self.clientes.pop_front()
 
 class TablaTiempos:
-	var tiempos
+	var llegadas
+	var servicios
 	var parent
 	
 	func _init(parent):
-		self.tiempos = []
+		self.llegadas = []
+		self.servicios = []
 		self.parent = parent
 	
 	func llenarTablaLlegadas(pasos = 60):
-		self.tiempos = []
+		self.llegadas = []
 		var ultima_llegada_sim = 0
 		for n in range(0, pasos):
 			var nueva_llegada = parent.calcularLlegada(n, ultima_llegada_sim)
 			if (nueva_llegada):
-				self.tiempos.push_back(n)
+				self.llegadas.push_back(n)
 				ultima_llegada_sim = n
+	
+	func llenarTablaServicios(pasos = 60):
+		if (len(self.llegadas) == 0):
+			self.llenarTablaLlegadas(pasos)
+		self.servicios = []
+		var servidores = {1: null}
+		var cola_sim = Cola.new()
+		var proxima_llegada = 0
+		for n in range(0, pasos):
+			for servidor in servidores:
+				if servidores[servidor] != null:
+					servidores[servidor] -= 1
+					if servidores[servidor] <= 0:
+						servidores[servidor] = null
+						#self.servicios.push_back(n)
+				else:
+					if cola_sim.length() != 0:
+						servidores[servidor] = parent.calcularServicio(pasos - n)
+						self.servicios.push_back(n + servidores[servidor])
+						cola_sim.sale()
+			if len(self.llegadas) <= proxima_llegada:
+				continue
+			if self.llegadas[proxima_llegada] == n:
+				cola_sim.entra(n)
+				proxima_llegada += 1
+						
 
 func calcularLlegada(tiempo_actual=tiempo_actual, ultima_llegada=ultima_llegada):
 	var probabilidad = dist.exponencial(media_llegadas, tiempo_actual - ultima_llegada)
 	var dado = randf()
 	return dado <= probabilidad
 
+func calcularServicio(pasos_restantes):
+	var probabilidad
+	var dado
+	var duracionServicio = 0
+	while true:
+		probabilidad = dist.exponencial(media_servicio, duracionServicio)
+		dado = randf()
+		if dado <= probabilidad:
+			return duracionServicio
+		duracionServicio += 1
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	cola = Cola.new()
-	ultima_llegada = Time.get_ticks_msec() / 1000
-	var llegadas = TablaTiempos.new(self)
-	llegadas.llenarTablaLlegadas()
-	print(llegadas.tiempos)
+	print(cola.length())
+	ultima_llegada = Time.get_ticks_msec() / timestep
+	var tiempos = TablaTiempos.new(self)
+	tiempos.llenarTablaServicios()
+	print(tiempos.llegadas)
+	print(tiempos.servicios)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
