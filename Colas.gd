@@ -7,6 +7,7 @@ var media_servicio = 0.2
 var ultima_llegada = 0
 var tiempo_actual = 0
 var timestep = 1000
+var mesas = 1
 var cola
 
 class Cola:
@@ -53,7 +54,9 @@ class TablaTiempos:
 		if (len(self.llegadas) == 0):
 			self.llenarTablaLlegadas(pasos)
 		self.servicios = []
-		var servidores = {1: null}
+		var servidores = {}
+		for mesa in range(1, parent.mesas + 1):
+			servidores[mesa] = null
 		var cola_sim = Cola.new()
 		var proxima_llegada = 0
 		for n in range(0, pasos):
@@ -66,7 +69,7 @@ class TablaTiempos:
 				else:
 					if cola_sim.length() != 0:
 						servidores[servidor] = parent.calcularServicio(pasos - n)
-						self.servicios.push_back(n + servidores[servidor])
+						self.servicios.push_back([n, n + servidores[servidor]])
 						cola_sim.sale()
 			if len(self.llegadas) <= proxima_llegada:
 				continue
@@ -91,15 +94,23 @@ func calcularServicio(pasos_restantes):
 			return duracionServicio
 		duracionServicio += 1
 
+func prepararDistribucion(array):
+	var resultado = []
+	var ultimo_n = 0
+	for n in array:
+		resultado.push_back(n - ultimo_n)
+		ultimo_n = n
+	return resultado
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	cola = Cola.new()
-	print(cola.length())
 	ultima_llegada = Time.get_ticks_msec() / timestep
 	var tiempos = TablaTiempos.new(self)
 	tiempos.llenarTablaServicios()
-	print(tiempos.llegadas)
-	print(tiempos.servicios)
+	#print(tiempos.llegadas)
+	#print(tiempos.servicios)
+	print(prepararDistribucion(tiempos.llegadas))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
