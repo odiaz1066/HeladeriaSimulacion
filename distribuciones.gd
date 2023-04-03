@@ -26,7 +26,6 @@ func poisson(lambda, x):
 func exponencial(mu, x):
 	return 1 - exp(-mu * x)
 	
-	
 func randv_histogram(values = [], probabilities = []):
 	var bag = []
 	var sum = 0
