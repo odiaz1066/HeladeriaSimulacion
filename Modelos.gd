@@ -29,6 +29,8 @@ class ModeloUnServidorSinLimite extends Modelo:
 		return (1 - self.rho) * (self.rho ** n)
 		
 class ModeloUnServidorConLimite extends Modelo:
+	var limit
+	
 	func _init(lambda, mu, limit=0):
 		self.lambda = lambda
 		self.mu = mu
@@ -37,8 +39,8 @@ class ModeloUnServidorConLimite extends Modelo:
 		self.p0 = self.calcularP0()
 		self.ls = self.calcularLs()
 		self.lq = self.calcularLq()
-		self.ws = self.calcularWs()
 		self.wq = self.calcularWq()
+		self.ws = self.calcularWs()
 		
 	func calcularP0():
 		if self.rho == 1:
@@ -100,12 +102,25 @@ class ModeloVariosServidoresSinLimite extends Modelo:
 		self.p0 = 1 / (a + b)
 		return self.p0
 		
+	func calcularPn(n):
+		if (0 <= n) and (n <= self.num_servidores):
+			return ((self.p ** n) / math.factorial(n)) * self.p0
+		else:
+			return (self.p ** n) / ((self.num_servidores ** (n - self.num_servidores)) * math.factorial(self.num_servidores)) * self.p0
+		
 class ModeloVariosServidoresConLimite extends Modelo:
+	var limite
+	var n_serve
+	var servidores_menos_p2
+	var z
+	var j
+	var r
+	
 	func _init(lambda, mu, num_servidores, limite=null):
 		self.lambda = lambda
 		self.mu = mu
 		self.num_servidores = num_servidores
-		self.n_serv = num_servidores
+		self.n_serve = num_servidores
 		self.limite = limite
 		self.rho = self.lambda / self.mu
 		self.servidores_menos_p2 = (self.num_servidores - self.rho) ** 2
@@ -114,6 +129,10 @@ class ModeloVariosServidoresConLimite extends Modelo:
 			self.j = self.limite - self.n_serve + 1
 			self.r = self.j - 1
 			self.p0 = self.calcularP0()
+			self.lq = self.calcularLq()
+			self.ls = self.calcularLs()
+			self.wq = self.calcularWq()
+			self.ws = self.calcularWs()
 	
 	func calcularP0():
 		var suma = 0
@@ -144,6 +163,12 @@ class ModeloVariosServidoresConLimite extends Modelo:
 	
 	func calcularLs():
 		return self.lq + (self.lambdaEffective() / self.mu)
+	
+	func calcularWq():
+		return self.lq / self.lambda
+	
+	func calcularWs():
+		return self.wq + (self.mu ** -1)
 	
 	func calcularPnIntervalo(inicio, fin):
 		var Pn = 0
