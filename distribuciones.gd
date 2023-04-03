@@ -12,6 +12,12 @@ func factorial(n, x=1):
 	else:
 		return factorial(n - 1, x * n)
 
+func sum(array):
+	var sum = 0.0
+	for n in array:
+		sum += n
+	return sum
+
 func poisson(lambda, x):
 	var numerador = exp(-lambda)*(lambda**x)
 	var denominador = factorial(x)
