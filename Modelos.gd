@@ -149,7 +149,11 @@ class ModeloVariosServidoresConLimite extends Modelo:
 		return (suma + term_b) ** -1
 		
 	func calcularPn(n):
-		var term_a = (self.rho ** self.limite) / (math.factorial(self.n_serve) * (self.n_serve ** self.r))
+		var term_a
+		if n <= self.n_serve:
+			term_a = (self.rho ** n) / math.factorial(n)
+		else:
+			term_a = (self.rho ** n) / (math.factorial(self.n_serve) * (self.n_serve ** (n - self.n_serve)))
 		return term_a * self.p0
 		
 	func calcularLq():

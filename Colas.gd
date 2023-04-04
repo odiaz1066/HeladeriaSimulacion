@@ -111,8 +111,8 @@ func _ready():
 	#print(tiempos.llegadas)
 	#print(tiempos.servicios)
 	#print(prepararDistribucion(tiempos.llegadas))
-	var modelo = Modelos.ModeloVariosServidoresSinLimite.new(0.5, 0.2, 4)
-	print(modelo.calcularPn(5))
+	var modelo = Modelos.ModeloVariosServidoresConLimite.new(0.5, 0.2, 4, 6)
+	print(modelo.p0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
