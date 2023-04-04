@@ -1,0 +1,35 @@
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://cg0g7xcj87cpc"]
+
+[ext_resource type="Texture2D" uid="uid://cjqs4n2nwe48" path="res://resources/GUI/botones/blue_button04.png" id="1_fb7eu"]
+[ext_resource type="Texture2D" uid="uid://cswwutk5jv2l5" path="res://resources/GUI/botones/blue_button00.png" id="2_l6ui1"]
+[ext_resource type="Texture2D" uid="uid://cts3yg7n8ngrt" path="res://resources/GUI/botones/blue_button01.png" id="3_05ivg"]
+[ext_resource type="Texture2D" uid="uid://j02hchn34hcp" path="res://resources/GUI/botones/grey_button05.png" id="4_nnu7c"]
+[ext_resource type="FontFile" uid="uid://c4qi7ohox6xlv" path="res://resources/kenvector_future_thin.ttf" id="5_scq33"]
+[ext_resource type="Texture2D" uid="uid://doe1keg4dl6b4" path="res://resources/GUI/botones/grey_panel.png" id="5_up6gu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xhibj"]
+texture = ExtResource("1_fb7eu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y0q7c"]
+texture = ExtResource("2_l6ui1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yh76l"]
+texture = ExtResource("3_05ivg")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_epgcy"]
+texture = ExtResource("4_nnu7c")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_by3wu"]
+texture = ExtResource("5_up6gu")
+
+[resource]
+default_font = ExtResource("5_scq33")
+default_font_size = 15
+Button/constants/h_separation = 5
+Button/styles/hover = SubResource("StyleBoxTexture_xhibj")
+Button/styles/normal = SubResource("StyleBoxTexture_y0q7c")
+Button/styles/pressed = SubResource("StyleBoxTexture_yh76l")
+Label/colors/font_color = Color(0.113725, 0.113725, 0.113725, 1)
+LineEdit/colors/font_color = Color(0.188235, 0.188235, 0.188235, 1)
+LineEdit/styles/normal = SubResource("StyleBoxTexture_epgcy")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_by3wu")

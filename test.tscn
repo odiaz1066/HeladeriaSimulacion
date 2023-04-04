@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://bdnnomgpxwgo"]
+[gd_scene load_steps=16 format=3 uid="uid://bdnnomgpxwgo"]
 
+[ext_resource type="Script" path="res://Main.gd" id="1_7bpxy"]
 [ext_resource type="Script" path="res://distribuciones.gd" id="1_co7do"]
 [ext_resource type="Script" path="res://Colas.gd" id="2_pxook"]
 [ext_resource type="TileSet" uid="uid://dyyt67u8rc3nt" path="res://resources/tileset.tres" id="3_myde6"]
@@ -9,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://byuuhwu0vvo18" path="res://resources/personas/hombre/hombre_act.png" id="7_d86k7"]
 [ext_resource type="Texture2D" uid="uid://brirgnseupb3n" path="res://resources/personas/mujer/mujer.png" id="8_422ib"]
 [ext_resource type="Texture2D" uid="uid://bnjdol0jrhfm" path="res://resources/personas/mujer/mujer_act.png" id="9_2757q"]
+[ext_resource type="Script" path="res://BotonCalcular.gd" id="10_jdpxm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_br7ax"]
 animations = [{
@@ -71,6 +73,7 @@ animations = [{
 radius = 17.7
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_7bpxy")
 
 [node name="Distribuciones" type="Node2D" parent="."]
 script = ExtResource("1_co7do")
@@ -126,3 +129,86 @@ animation = &"mujer_act"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cliente"]
 shape = SubResource("CircleShape2D_r27sp")
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="PanelVariables" type="PanelContainer" parent="GUI"]
+clip_contents = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -251.0
+offset_top = -199.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/PanelVariables"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="GUI/PanelVariables/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 11
+theme_override_constants/v_separation = 17
+columns = 2
+
+[node name="Label" type="Label" parent="GUI/PanelVariables/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Tasa de llegadas"
+
+[node name="LineEdit" type="LineEdit" parent="GUI/PanelVariables/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="GUI/PanelVariables/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Tasa de servicio"
+
+[node name="LineEdit2" type="LineEdit" parent="GUI/PanelVariables/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="GUI/PanelVariables/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "limite en cola"
+
+[node name="LineEdit3" type="LineEdit" parent="GUI/PanelVariables/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="GUI/PanelVariables/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "servidores"
+
+[node name="LineEdit4" type="LineEdit" parent="GUI/PanelVariables/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="BotonCalcular" type="Button" parent="GUI/PanelVariables/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "calcular"
+script = ExtResource("10_jdpxm")
+
+[node name="PanelPropiedades" type="PanelContainer" parent="GUI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="PanelProbabilidades" type="PanelContainer" parent="GUI"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[connection signal="pressed" from="GUI/PanelVariables/VBoxContainer/BotonCalcular" to="." method="_on_boton_calcular_pressed"]
