@@ -1,7 +1,74 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdnnomgpxwgo"]
+[gd_scene load_steps=14 format=3 uid="uid://bdnnomgpxwgo"]
 
 [ext_resource type="Script" path="res://distribuciones.gd" id="1_co7do"]
 [ext_resource type="Script" path="res://Colas.gd" id="2_pxook"]
+[ext_resource type="TileSet" uid="uid://dyyt67u8rc3nt" path="res://resources/tileset.tres" id="3_myde6"]
+[ext_resource type="Texture2D" uid="uid://dto6uua5ci8tq" path="res://resources/personas/servidor/servidor.png" id="4_eppi1"]
+[ext_resource type="Texture2D" uid="uid://bowpmscejyv8w" path="res://resources/personas/servidor/servidor_act.png" id="5_0gai7"]
+[ext_resource type="Texture2D" uid="uid://dbhdflosnnm2c" path="res://resources/personas/hombre/hombre.png" id="6_av2gj"]
+[ext_resource type="Texture2D" uid="uid://byuuhwu0vvo18" path="res://resources/personas/hombre/hombre_act.png" id="7_d86k7"]
+[ext_resource type="Texture2D" uid="uid://brirgnseupb3n" path="res://resources/personas/mujer/mujer.png" id="8_422ib"]
+[ext_resource type="Texture2D" uid="uid://bnjdol0jrhfm" path="res://resources/personas/mujer/mujer_act.png" id="9_2757q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_br7ax"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_eppi1")
+}],
+"loop": true,
+"name": &"servidor",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_0gai7")
+}],
+"loop": true,
+"name": &"servidor_act",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cwiws"]
+radius = 17.7
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7eh8b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_av2gj")
+}],
+"loop": true,
+"name": &"hombre",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_d86k7")
+}],
+"loop": true,
+"name": &"hombre_act",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_422ib")
+}],
+"loop": true,
+"name": &"mujer",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_2757q")
+}],
+"loop": true,
+"name": &"mujer_act",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r27sp"]
+radius = 17.7
 
 [node name="Main" type="Node2D"]
 
@@ -10,3 +77,52 @@ script = ExtResource("1_co7do")
 
 [node name="Colas" type="Node2D" parent="."]
 script = ExtResource("2_pxook")
+
+[node name="Mapa" type="TileMap" parent="."]
+tile_set = ExtResource("3_myde6")
+format = 2
+layer_0/name = "Piso"
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 65536, 0, 2, 131072, 0, 3, 196608, 0, 65536, 0, 0, 65537, 65536, 0, 65538, 720896, 0, 65539, 720896, 0, 131072, 0, 0, 131073, 65536, 0, 131074, 720896, 0, 131075, 720896, 0, 196608, 0, 0, 196609, 65536, 0, 196610, 720896, 0, 196611, 720896, 0, 262144, 0, 0, 262145, 65536, 0, 262146, 917504, 2, 262147, 983040, 2, 327680, 0, 0, 327681, 65536, 0, 327682, 917504, 2, 327683, 983040, 2, 393216, 0, 0, 393217, 65536, 0, 393218, 917504, 2, 393219, 983040, 2, 458752, 0, 0, 458753, 65536, 0, 458754, 917504, 2, 458755, 983040, 2, 524288, 0, 0, 524289, 65536, 0, 524290, 917504, 2, 524291, 983040, 2, 589824, 0, 0, 589825, 65536, 0, 589826, 131072, 0, 589827, 196608, 0, 4, 0, 0, 5, 65536, 0, 6, 131072, 0, 7, 196608, 0, 65540, 720896, 0, 65541, 720896, 0, 65542, 720896, 0, 65543, 720896, 0, 131076, 720896, 0, 131077, 720896, 0, 131078, 720896, 0, 131079, 720896, 0, 196612, 720896, 0, 196613, 720896, 0, 196614, 720896, 0, 196615, 720896, 0, 262148, 1048576, 2, 262149, 1114112, 2, 262150, 1179648, 2, 262151, 1245184, 2, 327684, 1048576, 2, 327685, 1114112, 2, 327686, 1179648, 2, 327687, 1245184, 2, 393220, 1048576, 2, 393221, 1114112, 2, 393222, 1179648, 2, 393223, 1245184, 2, 458756, 1048576, 2, 458757, 1114112, 2, 458758, 1179648, 2, 458759, 1245184, 2, 524292, 1048576, 2, 524293, 1114112, 2, 524294, 1179648, 2, 524295, 1245184, 2, 589828, 0, 0, 589829, 65536, 0, 589830, 131072, 0, 589831, 196608, 0, 8, 0, 0, 9, 65536, 0, 10, 131072, 0, 11, 196608, 0, 65544, 720896, 0, 65545, 720896, 0, 65546, 720896, 0, 65547, 720896, 0, 131080, 720896, 0, 131081, 720896, 0, 131082, 720896, 0, 131083, 720896, 0, 196616, 720896, 0, 196617, 720896, 0, 196618, 720896, 0, 196619, 720896, 0, 262152, 917504, 2, 262153, 983040, 2, 262154, 1048576, 2, 262155, 1114112, 2, 327688, 917504, 2, 327689, 983040, 2, 327690, 1048576, 2, 327691, 1114112, 2, 393224, 917504, 2, 393225, 983040, 2, 393226, 1048576, 2, 393227, 1114112, 2, 458760, 917504, 2, 458761, 983040, 2, 458762, 1048576, 2, 458763, 1114112, 2, 524296, 917504, 2, 524297, 983040, 2, 524298, 1048576, 2, 524299, 1114112, 2, 589832, 524288, 0, 589833, 524288, 0, 589834, 131072, 0, 589835, 196608, 0, 12, 0, 0, 13, 65536, 0, 14, 131072, 0, 15, 196608, 0, 65548, 720896, 0, 65549, 720896, 0, 65550, 720896, 0, 65551, 720896, 0, 131084, 720896, 0, 131085, 720896, 0, 131086, 720896, 0, 131087, 720896, 0, 196620, 720896, 0, 196621, 720896, 0, 196622, 720896, 0, 196623, 720896, 0, 262156, 1179648, 2, 262157, 1245184, 2, 262158, 917504, 2, 262159, 983040, 2, 327692, 1179648, 2, 327693, 1245184, 2, 327694, 917504, 2, 327695, 983040, 2, 393228, 1179648, 2, 393229, 1245184, 2, 393230, 917504, 2, 393231, 983040, 2, 458764, 1179648, 2, 458765, 1245184, 2, 458766, 917504, 2, 458767, 983040, 2, 524300, 1179648, 2, 524301, 1245184, 2, 524302, 917504, 2, 524303, 983040, 2, 589836, 0, 0, 589837, 65536, 0, 589838, 131072, 0, 589839, 196608, 0, 16, 0, 0, 17, 65536, 0, 65552, 0, 0, 65553, 65536, 0, 131088, 0, 0, 131089, 65536, 0, 196624, 0, 0, 196625, 65536, 0, 262160, 0, 0, 262161, 65536, 0, 327696, 0, 0, 327697, 65536, 0, 393232, 0, 0, 393233, 65536, 0, 458768, 0, 0, 458769, 65536, 0, 524304, 0, 0, 524305, 65536, 0, 589840, 0, 0, 589841, 65536, 0)
+layer_1/name = "Arquitectura"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array(65551, 65536, 4, 65538, 0, 4, 524290, 0, 5, 524303, 65536, 5, 65539, 327680, 4, 65540, 262144, 19, 65541, 393216, 5, 65542, 131072, 4, 65543, 327680, 4, 65544, 262144, 19, 65545, 262144, 19, 65546, 393216, 5, 65547, 131072, 4, 65548, 327680, 4, 65549, 262144, 19, 65550, 393216, 5, 524291, 327680, 4, 524292, 327680, 19, 524293, 327680, 19, 524294, 393216, 5, 524302, 393216, 5, 524301, 327680, 19, 524300, 327680, 19, 524299, 327680, 4, 524298, 393216, 5, 524295, 327680, 4, 131074, 393216, 4, 196610, 262144, 18, 262146, 327680, 5, 327682, 393216, 4, 393218, 262144, 18, 458754, 327680, 5, 131087, 393216, 4, 196623, 327680, 18, 262159, 327680, 5, 327695, 393216, 4, 393231, 327680, 18, 458767, 327680, 5, 524296, 786432, 19, 524297, 786432, 19)
+layer_2/name = "Muebles"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = 2
+layer_2/tile_data = PackedInt32Array(131077, 1638400, 65547, 131078, 1507328, 65547, 131079, 1638400, 65546, 131082, 1703936, 65547, 131083, 1703936, 65546, 131084, 1507328, 65547, 262149, 1572864, 18, 262151, 1572864, 18, 262154, 1572864, 18, 262156, 1572864, 18, 327685, 1048576, 19, 327687, 1048576, 19, 327690, 1048576, 19, 327692, 1048576, 19, 458760, 1179648, 12, 458761, 1310720, 12, 131075, 1507328, 65547, 131086, 1507328, 65547)
+layer_3/name = "Encima"
+layer_3/enabled = true
+layer_3/modulate = Color(1, 1, 1, 1)
+layer_3/y_sort_enabled = false
+layer_3/y_sort_origin = 0
+layer_3/z_index = 3
+layer_3/tile_data = PackedInt32Array(131084, 1572864, 9, 131078, 1638400, 7, 196609, 1310720, 7, 393216, 1310720, 7, 393233, 1310720, 7, 196624, 1310720, 6, 524288, 1179648, 6, 524289, 1245184, 6, 589825, 1245184, 7, 589824, 1179648, 7, 458768, 1638400, 5, 131086, 1638400, 9, 131075, 1572864, 8, 65536, 1310720, 5, 65553, 1507328, 7, 16, 1441792, 8, 3, 1441792, 8)
+
+[node name="Servidor" type="CharacterBody2D" parent="."]
+position = Vector2(550, 220)
+
+[node name="ServidorSprite" type="AnimatedSprite2D" parent="Servidor"]
+z_index = 3
+sprite_frames = SubResource("SpriteFrames_br7ax")
+animation = &"servidor_act"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Servidor"]
+shape = SubResource("CircleShape2D_cwiws")
+
+[node name="Cliente" type="CharacterBody2D" parent="."]
+position = Vector2(550, 480)
+
+[node name="ClienteSprite" type="AnimatedSprite2D" parent="Cliente"]
+z_index = 3
+sprite_frames = SubResource("SpriteFrames_7eh8b")
+animation = &"mujer_act"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cliente"]
+shape = SubResource("CircleShape2D_r27sp")
