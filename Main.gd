@@ -33,7 +33,8 @@ func iniciarSimulacion():
 	Globals.mesasActuales = []
 	Globals.tablaTiemposActual = Colas.TablaTiempos.new(Colas.new())
 	Globals.tablaTiemposActual.llenarTablaServicios(pasos)
-	for paso in range(0, pasos):
+	Globals.activo = true
+	for paso in range(0, Globals.pasos):
 		pasoSimulacion(paso)
 
 func llegaCliente():
@@ -62,8 +63,9 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _physics_process(delta):
+	if Globals.activo:
+		pass
 
 
 func _on_boton_calcular_pressed():
