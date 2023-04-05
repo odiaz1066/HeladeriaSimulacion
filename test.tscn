@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bdnnomgpxwgo"]
+[gd_scene load_steps=9 format=3 uid="uid://bdnnomgpxwgo"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_7bpxy"]
 [ext_resource type="Script" path="res://distribuciones.gd" id="1_co7do"]
@@ -6,7 +6,6 @@
 [ext_resource type="TileSet" uid="uid://dyyt67u8rc3nt" path="res://resources/tileset.tres" id="3_myde6"]
 [ext_resource type="Script" path="res://Mapa.gd" id="5_w648y"]
 [ext_resource type="PackedScene" uid="uid://x3pxfwtjq0yw" path="res://servidor.tscn" id="6_n7v0i"]
-[ext_resource type="PackedScene" uid="uid://yulelyssarj6" path="res://cliente.tscn" id="7_kvief"]
 [ext_resource type="Script" path="res://BotonCalcular.gd" id="10_jdpxm"]
 [ext_resource type="Script" path="res://PnContainer.gd" id="12_0wqm7"]
 
@@ -47,8 +46,6 @@ layer_3/y_sort_origin = 0
 layer_3/z_index = 3
 layer_3/tile_data = PackedInt32Array(131084, 1572864, 9, 131078, 1638400, 7, 196609, 1310720, 7, 393216, 1310720, 7, 393233, 1310720, 7, 196624, 1310720, 6, 524288, 1179648, 6, 524289, 1245184, 6, 589825, 1245184, 7, 589824, 1179648, 7, 458768, 1638400, 5, 131086, 1638400, 9, 131075, 1572864, 8, 65536, 1310720, 5, 65553, 1507328, 7, 16, 1441792, 8, 3, 1441792, 8)
 script = ExtResource("5_w648y")
-
-[node name="Cliente" parent="Mapa" instance=ExtResource("7_kvief")]
 
 [node name="Servidor" parent="Mapa" instance=ExtResource("6_n7v0i")]
 

@@ -1,18 +1,22 @@
 extends Node
 
-var PnInputValue = 0
 var modeloActual
 var colaActual
+var mesasActuales
+var tablaTiemposActual
 var llegadas
 var servicios
 var limite
 var servidores
+var servidores_activos = []
+var indice_servicio = 0
+@export var pasos = 60
 
 func iniciarModelo(llegadas, servicios, limite, servidores):
-	llegadas = llegadas
-	servicios = servicios
-	limite = limite
-	servidores = servidores
+	self.llegadas = llegadas
+	self.servicios = servicios
+	self.limite = limite
+	self.servidores = servidores
 	
 	if servidores == 1:
 		if limite == 0:

@@ -1,6 +1,9 @@
 extends Node2D
 
+class_name Main
+
 var Cliente = preload("res://cliente.tscn")
+@onready var Mapa = $%Mapa
 
 func calcularPropiedades():
 	var modeloActual = Globals.modeloActual
@@ -13,9 +16,49 @@ func calcularPropiedades():
 	$%WqOutput.text = str(modeloActual.wq)
 	$%WsOutput.text = str(modeloActual.ws)
 
+func pasoSimulacion(paso):
+	if paso in Globals.tablaTiemposActual.llegadas:
+		llegaCliente()
+	for mesa in Globals.mesasActuales:
+		if mesa.salida == paso:
+			saleCliente(mesa.cliente)
+	if Globals.tablaTiemposActual.servicios[Globals.indice_servicio][0] == paso:
+		servirCliente(Globals.tablaTiemposActual.servicios[Globals.indice_servicio])
+	moverCola()
+
+func iniciarSimulacion():
+	var pasos = Globals.pasos
+	Globals.indice_servicio = 0
+	Globals.colaActual = Colas.Cola.new()
+	Globals.mesasActuales = []
+	Globals.tablaTiemposActual = Colas.TablaTiempos.new(Colas.new())
+	Globals.tablaTiemposActual.llenarTablaServicios(pasos)
+	for paso in range(0, pasos):
+		pasoSimulacion(paso)
+
+func llegaCliente():
+	var cliente = Cliente.instantiate()
+	var entrada = Mapa.entrada * 64
+	cliente.position = Vector2(entrada.x + 32, entrada.y + 32)
+	Mapa.add_child(cliente)
+
+func servirCliente(tiempos):
+	pass
+
+func saleCliente(cliente):
+	pass
+	
+func moverCola():
+	pass
+
+func probarSimulacion():
+	var cliente = Cliente.instantiate()
+	cliente.position = Vector2i(8 * 64 + 32, 7 * 64 + 32)
+	$%Mapa.add_child(cliente)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,3 +77,5 @@ func _on_boton_calcular_pressed():
 	calcularPropiedades()
 	
 	$%Mapa.cargarServidores(servidores)
+	
+	iniciarSimulacion()

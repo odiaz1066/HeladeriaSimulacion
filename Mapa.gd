@@ -9,6 +9,7 @@ var max_y = 7
 var fila_mesas = 4
 var fila_sillas = 5
 var fila_servidores = 3
+var entrada = Vector2(max_x / 2, max_y - 1)
 @onready var map_size = get_used_rect().size 
 @onready var heladeria_size = map_size - Vector2i(min_x + (map_size.x - max_x), min_y + (map_size.y - max_y))
 
@@ -37,6 +38,7 @@ func cargarServidores(n):
 		add_child(persona)
 		
 		servidores.push_back(servidor)
+	Globals.servidores_activos = servidores
 		
 func limpiarServidores():
 	for i in range(min_x, min_x + heladeria_size.x + 1):

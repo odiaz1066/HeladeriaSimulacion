@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Colas
+
 var dist = Distribuciones.new()
 var llegadas = []
 var media_llegadas = 0.2
@@ -51,11 +53,12 @@ class TablaTiempos:
 				ultima_llegada_sim = n
 	
 	func llenarTablaServicios(pasos = 60):
+		print(len(self.llegadas))
 		if (len(self.llegadas) == 0):
 			self.llenarTablaLlegadas(pasos)
 		self.servicios = []
 		var servidores = {}
-		for mesa in range(1, parent.mesas + 1):
+		for mesa in range(1, Globals.servidores + 1):
 			servidores[mesa] = null
 		var cola_sim = Cola.new()
 		var proxima_llegada = 0
@@ -104,15 +107,16 @@ func prepararDistribucion(array):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	cola = Cola.new()
-	ultima_llegada = Time.get_ticks_msec() / timestep
-	var tiempos = TablaTiempos.new(self)
-	tiempos.llenarTablaServicios()
+	#cola = Cola.new()
+	#ultima_llegada = Time.get_ticks_msec() / timestep
+	#var tiempos = TablaTiempos.new(self)
+	#tiempos.llenarTablaServicios()
 	#print(tiempos.llegadas)
 	#print(tiempos.servicios)
 	#print(prepararDistribucion(tiempos.llegadas))
-	var modelo = Modelos.ModeloVariosServidoresConLimite.new(0.5, 0.2, 4, 6)
-	print(modelo.p0)
+	#var modelo = Modelos.ModeloVariosServidoresConLimite.new(0.5, 0.2, 4, 6)
+	#print(modelo.p0)
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

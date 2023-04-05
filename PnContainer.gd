@@ -14,7 +14,6 @@ func _on_pn_calcular_button_pressed():
 	var child = self.get_child(0)
 	self.remove_child(child)
 	var n = int($%PnCalcularInput.text)
-	Globals.PnInputValue = n
 	var output = LineEdit.new()
 	output.text = str(Globals.modeloActual.calcularPn(n))
 	self.add_child(output)

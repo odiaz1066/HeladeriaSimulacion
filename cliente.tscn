@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://yulelyssarj6"]
+[gd_scene load_steps=8 format=3 uid="uid://yulelyssarj6"]
 
 [ext_resource type="Texture2D" uid="uid://dbhdflosnnm2c" path="res://resources/personas/hombre/hombre.png" id="1_t7uuf"]
+[ext_resource type="Script" path="res://cliente.gd" id="1_x1meb"]
 [ext_resource type="Texture2D" uid="uid://byuuhwu0vvo18" path="res://resources/personas/hombre/hombre_act.png" id="2_0e4j7"]
 [ext_resource type="Texture2D" uid="uid://brirgnseupb3n" path="res://resources/personas/mujer/mujer.png" id="3_6rn8d"]
 [ext_resource type="Texture2D" uid="uid://bnjdol0jrhfm" path="res://resources/personas/mujer/mujer_act.png" id="4_e05yc"]
@@ -45,6 +46,7 @@ radius = 17.7
 
 [node name="Cliente" type="CharacterBody2D"]
 position = Vector2(550, 480)
+script = ExtResource("1_x1meb")
 
 [node name="ClienteSprite" type="AnimatedSprite2D" parent="."]
 z_index = 3
