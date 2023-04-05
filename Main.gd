@@ -1,8 +1,15 @@
 extends Node2D
 
-func calcular():
-	var modelo = Modelos.ModeloVariosServidoresConLimite.new(0.5, 0.2, 4, 6)
-	print(modelo.p0)
+func calcularPropiedades():
+	var modeloActual = Globals.modeloActual
+	$%LambdaOutput.text = str(modeloActual.lambda)
+	$%MuOutput.text = str(modeloActual.mu)
+	$%RhoOutput.text = str(modeloActual.rho)
+	$%P0Output.text = str(modeloActual.p0)
+	$%LqOutput.text = str(modeloActual.lq)
+	$%LsOutput.text = str(modeloActual.ls)
+	$%WqOutput.text = str(modeloActual.wq)
+	$%WsOutput.text = str(modeloActual.ws)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,4 +22,11 @@ func _process(delta):
 
 
 func _on_boton_calcular_pressed():
-	calcular()
+	var llegadas = float($%LlegadasInput.text)
+	var servicios = float($%ServiciosInput.text)
+	var limite = float($%LimiteInput.text)
+	var servidores = float($%ServidoresInput.text)
+	
+	Globals.iniciarModelo(llegadas, servicios, limite, servidores)
+	
+	calcularPropiedades()

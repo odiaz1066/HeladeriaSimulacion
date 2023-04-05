@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bdnnomgpxwgo"]
+[gd_scene load_steps=17 format=3 uid="uid://bdnnomgpxwgo"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_7bpxy"]
 [ext_resource type="Script" path="res://distribuciones.gd" id="1_co7do"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://brirgnseupb3n" path="res://resources/personas/mujer/mujer.png" id="8_422ib"]
 [ext_resource type="Texture2D" uid="uid://bnjdol0jrhfm" path="res://resources/personas/mujer/mujer_act.png" id="9_2757q"]
 [ext_resource type="Script" path="res://BotonCalcular.gd" id="10_jdpxm"]
+[ext_resource type="Script" path="res://PnContainer.gd" id="12_0wqm7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_br7ax"]
 animations = [{
@@ -163,28 +164,32 @@ columns = 2
 layout_mode = 2
 text = "Tasa de llegadas"
 
-[node name="LineEdit" type="LineEdit" parent="GUI/PanelVariables/VBoxContainer/GridContainer"]
+[node name="LlegadasInput" type="LineEdit" parent="GUI/PanelVariables/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="GUI/PanelVariables/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Tasa de servicio"
 
-[node name="LineEdit2" type="LineEdit" parent="GUI/PanelVariables/VBoxContainer/GridContainer"]
+[node name="ServiciosInput" type="LineEdit" parent="GUI/PanelVariables/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Label3" type="Label" parent="GUI/PanelVariables/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "limite en cola"
 
-[node name="LineEdit3" type="LineEdit" parent="GUI/PanelVariables/VBoxContainer/GridContainer"]
+[node name="LimiteInput" type="LineEdit" parent="GUI/PanelVariables/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Label4" type="Label" parent="GUI/PanelVariables/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "servidores"
 
-[node name="LineEdit4" type="LineEdit" parent="GUI/PanelVariables/VBoxContainer/GridContainer"]
+[node name="ServidoresInput" type="LineEdit" parent="GUI/PanelVariables/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="BotonCalcular" type="Button" parent="GUI/PanelVariables/VBoxContainer"]
@@ -214,68 +219,75 @@ columns = 2
 layout_mode = 2
 text = "Lambda"
 
-[node name="LineEdit" type="LineEdit" parent="GUI/PanelPropiedades/GridContainer"]
+[node name="LambdaOutput" type="LineEdit" parent="GUI/PanelPropiedades/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="GUI/PanelPropiedades/GridContainer"]
 layout_mode = 2
 text = "Mu"
 
-[node name="LineEdit2" type="LineEdit" parent="GUI/PanelPropiedades/GridContainer"]
+[node name="MuOutput" type="LineEdit" parent="GUI/PanelPropiedades/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Label3" type="Label" parent="GUI/PanelPropiedades/GridContainer"]
 layout_mode = 2
 text = "P"
 
-[node name="LineEdit3" type="LineEdit" parent="GUI/PanelPropiedades/GridContainer"]
+[node name="RhoOutput" type="LineEdit" parent="GUI/PanelPropiedades/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Label4" type="Label" parent="GUI/PanelPropiedades/GridContainer"]
 layout_mode = 2
 text = "P0"
 
-[node name="LineEdit4" type="LineEdit" parent="GUI/PanelPropiedades/GridContainer"]
+[node name="P0Output" type="LineEdit" parent="GUI/PanelPropiedades/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Label5" type="Label" parent="GUI/PanelPropiedades/GridContainer"]
 layout_mode = 2
 text = "Lq"
 
-[node name="LineEdit5" type="LineEdit" parent="GUI/PanelPropiedades/GridContainer"]
+[node name="LqOutput" type="LineEdit" parent="GUI/PanelPropiedades/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Label6" type="Label" parent="GUI/PanelPropiedades/GridContainer"]
 layout_mode = 2
 text = "Ls"
 
-[node name="LineEdit6" type="LineEdit" parent="GUI/PanelPropiedades/GridContainer"]
+[node name="LsOutput" type="LineEdit" parent="GUI/PanelPropiedades/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Label7" type="Label" parent="GUI/PanelPropiedades/GridContainer"]
 layout_mode = 2
 text = "wq"
 
-[node name="LineEdit7" type="LineEdit" parent="GUI/PanelPropiedades/GridContainer"]
+[node name="WqOutput" type="LineEdit" parent="GUI/PanelPropiedades/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Label8" type="Label" parent="GUI/PanelPropiedades/GridContainer"]
 layout_mode = 2
 text = "ws"
 
-[node name="LineEdit8" type="LineEdit" parent="GUI/PanelPropiedades/GridContainer"]
+[node name="WsOutput" type="LineEdit" parent="GUI/PanelPropiedades/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="PanelProbabilidades" type="PanelContainer" parent="GUI"]
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -65.0
+offset_top = -136.0
 offset_right = 119.0
 offset_bottom = 22.0
 grow_vertical = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/PanelProbabilidades"]
 layout_mode = 2
@@ -293,11 +305,21 @@ columns = 2
 layout_mode = 2
 text = "Pn"
 
-[node name="LineEdit" type="LineEdit" parent="GUI/PanelProbabilidades/VBoxContainer/GridContainer"]
+[node name="PnCalcularInput" type="LineEdit" parent="GUI/PanelProbabilidades/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Button" type="Button" parent="GUI/PanelProbabilidades/VBoxContainer"]
+[node name="PnCalcularButton" type="Button" parent="GUI/PanelProbabilidades/VBoxContainer"]
 layout_mode = 2
 text = "Calcular"
 
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/PanelProbabilidades/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="PnContainer" type="VBoxContainer" parent="GUI/PanelProbabilidades/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+script = ExtResource("12_0wqm7")
+
 [connection signal="pressed" from="GUI/PanelVariables/VBoxContainer/BotonCalcular" to="." method="_on_boton_calcular_pressed"]
+[connection signal="pressed" from="GUI/PanelProbabilidades/VBoxContainer/PnCalcularButton" to="GUI/PanelProbabilidades/VBoxContainer/ScrollContainer/PnContainer" method="_on_pn_calcular_button_pressed"]
