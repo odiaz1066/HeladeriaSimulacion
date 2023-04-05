@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://x3pxfwtjq0yw"]
+
+[ext_resource type="Texture2D" uid="uid://dto6uua5ci8tq" path="res://resources/personas/servidor/servidor.png" id="1_uc8b8"]
+[ext_resource type="Texture2D" uid="uid://bowpmscejyv8w" path="res://resources/personas/servidor/servidor_act.png" id="2_yvgl1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_br7ax"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_uc8b8")
+}],
+"loop": true,
+"name": &"servidor",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yvgl1")
+}],
+"loop": true,
+"name": &"servidor_act",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cwiws"]
+radius = 17.7
+
+[node name="Servidor" type="CharacterBody2D"]
+position = Vector2(550, 220)
+
+[node name="ServidorSprite" type="AnimatedSprite2D" parent="."]
+z_index = 3
+sprite_frames = SubResource("SpriteFrames_br7ax")
+animation = &"servidor_act"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cwiws")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

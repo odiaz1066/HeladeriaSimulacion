@@ -1,5 +1,7 @@
 extends Node2D
 
+var Cliente = preload("res://cliente.tscn")
+
 func calcularPropiedades():
 	var modeloActual = Globals.modeloActual
 	$%LambdaOutput.text = str(modeloActual.lambda)
@@ -30,3 +32,5 @@ func _on_boton_calcular_pressed():
 	Globals.iniciarModelo(llegadas, servicios, limite, servidores)
 	
 	calcularPropiedades()
+	
+	$%Mapa.cargarServidores(servidores)
