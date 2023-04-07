@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://yulelyssarj6"]
+[gd_scene load_steps=9 format=3 uid="uid://cg8cn3rma0sdu"]
 
 [ext_resource type="Texture2D" uid="uid://dbhdflosnnm2c" path="res://resources/personas/hombre/hombre.png" id="1_t7uuf"]
 [ext_resource type="Script" path="res://cliente.gd" id="1_x1meb"]
 [ext_resource type="Texture2D" uid="uid://byuuhwu0vvo18" path="res://resources/personas/hombre/hombre_act.png" id="2_0e4j7"]
 [ext_resource type="Texture2D" uid="uid://brirgnseupb3n" path="res://resources/personas/mujer/mujer.png" id="3_6rn8d"]
 [ext_resource type="Texture2D" uid="uid://bnjdol0jrhfm" path="res://resources/personas/mujer/mujer_act.png" id="4_e05yc"]
+[ext_resource type="Script" path="res://LabelCliente.gd" id="6_dr4oj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7eh8b"]
 animations = [{
@@ -46,14 +47,33 @@ radius = 17.7
 
 [node name="Cliente" type="CharacterBody2D"]
 position = Vector2(550, 480)
+rotation = 3.14159
 script = ExtResource("1_x1meb")
 
 [node name="ClienteSprite" type="AnimatedSprite2D" parent="."]
 z_index = 3
 sprite_frames = SubResource("SpriteFrames_7eh8b")
-animation = &"mujer_act"
+animation = &"mujer"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_r27sp")
+disabled = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 5.0
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-12, 20)
+script = ExtResource("6_dr4oj")
+
+[node name="Label" type="Label" parent="Node2D"]
+z_index = 5
+offset_left = -16.0
+offset_top = 6.0
+offset_right = 40.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1

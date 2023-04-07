@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://cg0g7xcj87cpc"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://cg0g7xcj87cpc"]
 
 [ext_resource type="Texture2D" uid="uid://cjqs4n2nwe48" path="res://resources/GUI/botones/blue_button04.png" id="1_fb7eu"]
 [ext_resource type="Texture2D" uid="uid://cswwutk5jv2l5" path="res://resources/GUI/botones/blue_button00.png" id="2_l6ui1"]
@@ -19,6 +19,9 @@ texture = ExtResource("3_05ivg")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_epgcy"]
 texture = ExtResource("4_nnu7c")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mojl5"]
+texture = ExtResource("4_nnu7c")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_by3wu"]
 texture = ExtResource("5_up6gu")
 
@@ -31,5 +34,7 @@ Button/styles/normal = SubResource("StyleBoxTexture_y0q7c")
 Button/styles/pressed = SubResource("StyleBoxTexture_yh76l")
 Label/colors/font_color = Color(0.113725, 0.113725, 0.113725, 1)
 LineEdit/colors/font_color = Color(0.188235, 0.188235, 0.188235, 1)
+LineEdit/colors/font_uneditable_color = Color(0.188235, 0.188235, 0.188235, 1)
 LineEdit/styles/normal = SubResource("StyleBoxTexture_epgcy")
+LineEdit/styles/read_only = SubResource("StyleBoxTexture_mojl5")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_by3wu")

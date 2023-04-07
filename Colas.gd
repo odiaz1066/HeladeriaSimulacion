@@ -52,7 +52,7 @@ class TablaTiempos:
 				self.llegadas.push_back(n)
 				ultima_llegada_sim = n
 	
-	func llenarTablaServicios(pasos = 60):
+	func llenarTablaServicios(pasos = 60, limite = 0):
 		print(len(self.llegadas))
 		if (len(self.llegadas) == 0):
 			self.llenarTablaLlegadas(pasos)
@@ -62,6 +62,7 @@ class TablaTiempos:
 			servidores[mesa] = null
 		var cola_sim = Cola.new()
 		var proxima_llegada = 0
+		var dentro_de_limite
 		for n in range(0, pasos):
 			for servidor in servidores:
 				if servidores[servidor] != null:
@@ -70,7 +71,8 @@ class TablaTiempos:
 						servidores[servidor] = null
 						#self.servicios.push_back(n)
 				else:
-					if cola_sim.length() != 0:
+					dentro_de_limite = (limite == 0) or (cola_sim.length() <= limite)
+					if (cola_sim.length() != 0) and (dentro_de_limite):
 						servidores[servidor] = parent.calcularServicio(pasos - n)
 						self.servicios.push_back([n, n + servidores[servidor]])
 						cola_sim.sale()
@@ -82,7 +84,7 @@ class TablaTiempos:
 						
 
 func calcularLlegada(tiempo_actual=tiempo_actual, ultima_llegada=ultima_llegada):
-	var probabilidad = dist.exponencial(media_llegadas, tiempo_actual - ultima_llegada)
+	var probabilidad = dist.exponencial(Globals.llegadas, tiempo_actual - ultima_llegada)
 	var dado = randf()
 	return dado <= probabilidad
 
@@ -91,7 +93,7 @@ func calcularServicio(pasos_restantes):
 	var dado
 	var duracionServicio = 0
 	while true:
-		probabilidad = dist.exponencial(media_servicio, duracionServicio)
+		probabilidad = dist.exponencial(Globals.servicios, duracionServicio)
 		dado = randf()
 		if dado <= probabilidad:
 			return duracionServicio

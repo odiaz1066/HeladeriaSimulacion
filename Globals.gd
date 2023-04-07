@@ -10,7 +10,16 @@ var limite
 var servidores
 var servidores_activos = []
 var indice_servicio = 0
-@export var pasos = 60
+var activo = false
+var pasoActual = 0
+var numeroClientes = 0
+var velocidades = {
+	"Normal" : 1,
+	"Lento" : 0.5,
+	"Rapido" : 2
+}
+var velocidad = "Normal"
+@export var pasos = 10000
 
 func iniciarModelo(llegadas, servicios, limite, servidores):
 	self.llegadas = llegadas
@@ -29,9 +38,12 @@ func iniciarModelo(llegadas, servicios, limite, servidores):
 		else:
 			modeloActual = Modelos.ModeloVariosServidoresConLimite.new(llegadas, servicios, servidores, limite)
 
+func convertMapaToGlobal(vector):
+	return Vector2(vector.x * 64 + 32, vector.y * 64 + 32)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	modeloActual = Modelos.ModeloUnServidorSinLimite.new(0.2, 0.4) # Replace with function body.
+	modeloActual = Modelos.ModeloVariosServidoresSinLimite.new(0.2, 0.4, 4) # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
