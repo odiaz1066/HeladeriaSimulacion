@@ -115,6 +115,7 @@ func _physics_process(delta):
 				delta_acumulado = 0
 		else:
 			Globals.activo = false
+			$%ActivoBoton.button_pressed = false
 
 
 func _on_boton_calcular_pressed():
@@ -145,3 +146,5 @@ func _on_boton_calcular_pressed():
 	$%Mapa.cargarServidores(Globals.servidores)
 	
 	iniciarSimulacion()
+	
+	$%ActivoBoton.button_pressed = true

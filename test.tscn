@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdnnomgpxwgo"]
+[gd_scene load_steps=11 format=3 uid="uid://bdnnomgpxwgo"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_7bpxy"]
 [ext_resource type="Script" path="res://distribuciones.gd" id="1_co7do"]
 [ext_resource type="Script" path="res://Colas.gd" id="2_pxook"]
 [ext_resource type="TileSet" uid="uid://dyyt67u8rc3nt" path="res://resources/tileset.tres" id="3_myde6"]
 [ext_resource type="Script" path="res://Mapa.gd" id="5_w648y"]
+[ext_resource type="Script" path="res://BotonVelocidad.gd" id="8_gfuic"]
+[ext_resource type="Script" path="res://ActivoBoton.gd" id="8_t6oak"]
+[ext_resource type="Script" path="res://GraficaExponencial.gd" id="10_6nkw7"]
 [ext_resource type="Script" path="res://BotonCalcular.gd" id="10_jdpxm"]
 [ext_resource type="Script" path="res://PnContainer.gd" id="12_0wqm7"]
 
@@ -265,5 +268,70 @@ layout_mode = 2
 layout_mode = 2
 script = ExtResource("12_0wqm7")
 
+[node name="PanelControles" type="PanelContainer" parent="GUI"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/PanelControles"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="GUI/PanelControles/VBoxContainer"]
+layout_mode = 2
+text = "controles
+simulacion"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/PanelControles/VBoxContainer"]
+layout_mode = 2
+
+[node name="ActivoBoton" type="CheckButton" parent="GUI/PanelControles/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("8_t6oak")
+
+[node name="Label" type="Label" parent="GUI/PanelControles/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "activa"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="GUI/PanelControles/VBoxContainer"]
+layout_mode = 2
+text = "velocidad"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BotonVelocidad" type="OptionButton" parent="GUI/PanelControles/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+item_count = 3
+selected = 0
+popup/item_0/text = "Normal"
+popup/item_0/id = 0
+popup/item_1/text = "Lento"
+popup/item_1/id = 1
+popup/item_2/text = "Rapido"
+popup/item_2/id = 2
+script = ExtResource("8_gfuic")
+
+[node name="PanelGrafica" type="PanelContainer" parent="GUI"]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="TabContainer" type="TabContainer" parent="GUI/PanelGrafica"]
+layout_mode = 2
+
+[node name="GraficaExponencial" type="Control" parent="GUI/PanelGrafica/TabContainer"]
+layout_mode = 2
+script = ExtResource("10_6nkw7")
+
 [connection signal="pressed" from="GUI/PanelVariables/VBoxContainer/BotonCalcular" to="." method="_on_boton_calcular_pressed"]
 [connection signal="pressed" from="GUI/PanelProbabilidades/VBoxContainer/PnCalcularButton" to="GUI/PanelProbabilidades/VBoxContainer/ScrollContainer/PnContainer" method="_on_pn_calcular_button_pressed"]
+[connection signal="toggled" from="GUI/PanelControles/VBoxContainer/HBoxContainer/ActivoBoton" to="GUI/PanelControles/VBoxContainer/HBoxContainer/ActivoBoton" method="_on_toggled"]
+[connection signal="item_selected" from="GUI/PanelControles/VBoxContainer/BotonVelocidad" to="GUI/PanelControles/VBoxContainer/BotonVelocidad" method="_on_item_selected"]

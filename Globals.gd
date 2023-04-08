@@ -16,7 +16,7 @@ var numeroClientes = 0
 var velocidades = {
 	"Normal" : 1,
 	"Lento" : 0.5,
-	"Rapido" : 2
+	"Rapido" : 1.5
 }
 var velocidad = "Normal"
 @export var pasos = 10000

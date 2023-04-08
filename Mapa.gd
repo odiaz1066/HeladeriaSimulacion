@@ -49,6 +49,7 @@ func limpiarServidores():
 	for i in range(min_x, min_x + heladeria_size.x + 1):
 		set_cell(2, Vector2i(i, fila_mesas))
 		set_cell(2, Vector2i(i, fila_sillas))
+		set_cell(3, Vector2i(i, fila_mesas))
 		for child in get_children():
 			remove_child(child)
 			
