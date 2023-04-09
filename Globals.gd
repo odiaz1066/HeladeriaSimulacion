@@ -45,7 +45,6 @@ func convertMapaToGlobal(vector):
 func _ready():
 	modeloActual = Modelos.ModeloVariosServidoresSinLimite.new(0.2, 0.4, 4) # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

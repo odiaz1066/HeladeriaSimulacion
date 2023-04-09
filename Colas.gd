@@ -100,12 +100,23 @@ func calcularServicio(pasos_restantes):
 		duracionServicio += 1
 
 func prepararDistribucion(array):
-	var resultado = []
+	var resultado = {}
+	var conteo = []
 	var ultimo_n = 0
+	var index = 0
 	for n in array:
-		resultado.push_back(n - ultimo_n)
+		resultado[index] = 0
+		conteo.push_back(n - ultimo_n)
 		ultimo_n = n
-	return resultado
+		index += 1
+	
+	var max_y = 0
+	for x in conteo:
+		resultado[x] += 1
+		if resultado[x] > max_y:
+			max_y = resultado[x]
+	
+	return [resultado, max_y]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

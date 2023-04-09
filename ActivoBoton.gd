@@ -1,6 +1,5 @@
 extends CheckButton
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -12,4 +11,8 @@ func _process(delta):
 
 
 func _on_toggled(button_pressed):
+	if Globals.colaActual == null:
+		OS.alert("Presione el boton 'Calcular' primero")
+		set_pressed_no_signal(false)
+		return
 	Globals.activo = button_pressed
